@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-//helloClient
+//aaa
 public class Client01 {
 	
 	public static <T>T getREmoteProxyObj(Class serviceInterface,InetSocketAddress addressPort){
