@@ -8,32 +8,32 @@ import java.lang.reflect.Proxy;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+//123
 public class Client01 {
 	
 	public static <T>T getREmoteProxyObj(Class serviceInterface,InetSocketAddress addressPort){
 		
 		
-		//µÚ¶þ¸ö²ÎÊý:ÐèÒª´úÀíµÄ¶ÔÏó£¬¾ß±¸ÄÄÐ©·½·¨  --½Ó¿Ú  (Êý×éÀàÐÍ)
+		//ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ó£¬¾ß±ï¿½ï¿½ï¿½Ð©ï¿½ï¿½ï¿½ï¿½  --ï¿½Ó¿ï¿½  (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 		return (T)Proxy.newProxyInstance(serviceInterface.getClassLoader(), new Class<?>[]{serviceInterface},new InvocationHandler() {
 			/**
-			 * proxy ´úÀíµÄ¶ÔÏó  method´úÀíÄÇ¸ö·½·¨   args ·½·¨µÄ²ÎÊýÁÐ±í
+			 * proxy ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½  methodï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½   args ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 			 */
 			@Override
 			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 				// TODO Auto-generated method stub
 				Socket socket=new Socket();
-				//½¨Á¢Á¬½Ó
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				socket.connect(addressPort);
-				//¹¹½¨¶ÔÏóÁ÷½øÐÐ²Ù×÷
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
 				ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-				//½Ó¿ÚÃû³Æ
-				//·½·¨Ãû³Æ
+				//ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				output.writeUTF(serviceInterface.getName());
 				output.writeUTF(method.getName());
-				//·½·¨²ÎÊýÀàÐÍÊÇÊý×é
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				output.writeObject(method.getParameterTypes());
-				//·½·¨²ÎÊýÁÐ±í
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 				output.writeObject(args);
 				
 				ObjectInputStream input=new ObjectInputStream(socket.getInputStream());
